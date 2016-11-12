@@ -1,7 +1,9 @@
 package com.totoro_fly.justjava;
 
 import android.icu.text.NumberFormat;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -28,12 +30,24 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method is called when the order button is clicked.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void submitOrder(View view) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
+        displayPrice(quantity * 5);
+    }
+
+    public void incerment(View view) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
         quantity++;
         display(quantity);
-        displayPrice(quantity * 5);
+    }
+    public void decerment(View view) {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
+        quantity--;
+        display(quantity);
     }
 
     /**
@@ -47,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method display the given price on the screen
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void displayPrice(int number) {
         TextView pricetextview = (TextView) findViewById(R.id.price_text_view);
         pricetextview.setText(NumberFormat.getCurrencyInstance().format(number));

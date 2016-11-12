@@ -16,6 +16,13 @@
         android:paddingTop="16dp"
         android:text="Quantity"
         android:textAllCaps="true"/>
+    <Button
+        android:id="@+id/incerment_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="+"
+        android:onClick="incerment"
+        />
 
     <TextView
         android:id="@+id/quantity_text_view"
@@ -23,6 +30,14 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="16sp"
+        />
+
+    <Button
+        android:id="@+id/decrement_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:text="-"
+        android:onClick="decerment"
         />
 
     <TextView
