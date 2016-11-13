@@ -19,45 +19,29 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-
+    int quantity=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int sum = 0;
         setContentView(R.layout.activity_main);
     }
 
-    /**
-     * This method is called when the order button is clicked.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void submitOrder(View view) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
-        displayPrice(quantity * 5);
-    }
-
+  
     public void incerment(View view) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
         quantity++;
         display(quantity);
     }
     public void decerment(View view) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        int quantity = Integer.parseInt(String.valueOf(quantityTextView.getText()));
         quantity--;
         display(quantity);
     }
-
     /**
      * This method displays the given quantity value on the screen.
      */
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
+    }        
     /**
      * This method display the given price on the screen
      */
@@ -66,4 +50,12 @@ public class MainActivity extends AppCompatActivity {
         TextView pricetextview = (TextView) findViewById(R.id.price_text_view);
         pricetextview.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+    /**
+     * This method is called when the order button is clicked.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void submitOrder(View view) {
+        displayPrice(quantity * 5);
+    }
+
 }
