@@ -19,29 +19,33 @@ import android.widget.TextView;
  * This app displays an order form to order coffee.
  */
 public class MainActivity extends AppCompatActivity {
-    int quantity=0;
+    int quantity = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-  
+
     public void incerment(View view) {
         quantity++;
         display(quantity);
     }
+
     public void decerment(View view) {
         quantity--;
         display(quantity);
     }
+
     /**
      * This method displays the given quantity value on the screen.
      */
     private void display(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }        
+    }
+
     /**
      * This method display the given price on the screen
      */
@@ -50,12 +54,20 @@ public class MainActivity extends AppCompatActivity {
         TextView pricetextview = (TextView) findViewById(R.id.price_text_view);
         pricetextview.setText(NumberFormat.getCurrencyInstance().format(number));
     }
+
+    private void dispalyMessage(String Message) {
+        TextView textView= (TextView) findViewById(R.id.price_text_view);
+        textView.setText(Message);
+    }
+
     /**
      * This method is called when the order button is clicked.
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void submitOrder(View view) {
-        displayPrice(quantity * 5);
+//        displayPrice(quantity * 5);
+        String priceMessage="Free";
+        dispalyMessage(priceMessage);
     }
 
 }
