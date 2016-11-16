@@ -56,9 +56,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void dispalyMessage(String Message) {
-        TextView textView= (TextView) findViewById(R.id.price_text_view);
+        TextView textView = (TextView) findViewById(R.id.price_text_view);
         textView.setText(Message);
     }
+    
 
     /**
      * This method is called when the order button is clicked.
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void submitOrder(View view) {
 //        displayPrice(quantity * 5);
-        String priceMessage="Free";
+        String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nThank you!";
         dispalyMessage(priceMessage);
     }
 
