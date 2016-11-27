@@ -1,6 +1,5 @@
 package com.totoro_fly.justjava;
 
-import android.icu.text.NumberFormat;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -28,47 +27,49 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void incerment(View view) {
+    public void incermentButton(View view) {
         quantity++;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
-    public void decerment(View view) {
+    public void decermentButton(View view) {
         quantity--;
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        quantityTextView.setText(String.valueOf(number));
     }
-
-    /**
-     * This method display the given price on the screen
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void displayPrice(int number) {
-        TextView pricetextview = (TextView) findViewById(R.id.price_text_view);
-        pricetextview.setText(NumberFormat.getCurrencyInstance().format(number));
-    }
-
-    private void dispalyMessage(String Message) {
-        TextView textView = (TextView) findViewById(R.id.price_text_view);
-        textView.setText(Message);
-    }
-    
-
     /**
      * This method is called when the order button is clicked.
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void submitOrder(View view) {
 //        displayPrice(quantity * 5);
-        String priceMessage = "Total: " + NumberFormat.getCurrencyInstance().format(quantity * 5) + "\nThank you!";
+        String priceMessage = createOrderSummary();
         dispalyMessage(priceMessage);
     }
+    private String createOrderSummary() {
+        String priceMessage = "Name:KK";
+        priceMessage = priceMessage + "\nQuantity: " + quantity;
+        priceMessage = priceMessage + "\nTotal:$ " + calculatePrice();
+        priceMessage = priceMessage + "\nThank you!";
+        return priceMessage;
+    }
+
+    private int calculatePrice() {
+        int price = quantity * 5;
+        return price;
+    }
+
+    private void dispalyMessage(String Message) {
+        TextView textView = (TextView) findViewById(R.id.order_summary_text_view);
+        textView.setText(Message);
+    }
+
 
 }
