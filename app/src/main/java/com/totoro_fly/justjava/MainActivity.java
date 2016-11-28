@@ -1,13 +1,20 @@
 package com.totoro_fly.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.R.attr.name;
 
 /**
  * Add your package below.Package name can be found in the project's AndroidManifest.xml file.
@@ -25,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox chocolateCheckBox;
     TextView submitTextView;
     TextView quantityTextView;
+    Button nameButton;
     int quantity = 0;
 
     @Override
@@ -36,15 +44,30 @@ public class MainActivity extends AppCompatActivity {
         whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_check_box);
         chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_check_box);
         nameEditText = (EditText) findViewById(R.id.name_edit_text);
+        nameButton = (Button) findViewById(R.id.name_button);
     }
 
+    public void nameClick(View view) {
+        nameEditText.clearFocus();
+        nameButton.setFocusable(true);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(nameButton.getWindowToken(), 0);
+    }
 
     public void incermentButton(View view) {
+        if (quantity >= 100) {
+            Toast.makeText(this, "抱歉，不能点单超过100杯。", Toast.LENGTH_SHORT).show();
+            return;
+        }
         quantity++;
         displayQuantity(quantity);
     }
 
     public void decermentButton(View view) {
+        if (quantity <= 1) {
+            Toast.makeText(this, "请至少点1杯。", Toast.LENGTH_SHORT).show();
+            return;
+        }
         quantity--;
         displayQuantity(quantity);
     }
@@ -63,6 +86,17 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         String priceMessage = createOrderSummary();
         dispalyMessage(priceMessage);
+    }
+
+    public void emailClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_EMAIL,"liujian180389@163.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Just Java order for "+name);
+        intent.putExtra(Intent.EXTRA_TEXT,createOrderSummary());
+        if(intent.resolveActivity(getPackageManager())!=null)
+        startActivity(intent);
+
     }
 
     private String createOrderSummary() {
@@ -88,11 +122,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int calculatePrice() {
-        int basePrice=5;
-        if(hasWhippedCream())
+        int basePrice = 5;
+        if (hasWhippedCream())
             basePrice++;
-        if(haschocolate())
-            basePrice=basePrice+2;
+        if (haschocolate())
+            basePrice = basePrice + 2;
         int price = quantity * basePrice;
         return price;
     }
