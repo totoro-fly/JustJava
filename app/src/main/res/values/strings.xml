@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Just Java</string>
+    <string name="activity_main_hint_请输入姓名">Please enter your name</string>
+    <string name="activity_main_button_确认">enter</string>
+    <string name="activity_main_textview_配料">toppings</string>
+    <string name="activity_main_checkbox_生牛奶">Whipped cream</string>
+    <string name="activity_main_checkbox_巧克力">chocolate</string>
+    <string name="activity_main_textview_数量">Quantity</string>
+    <string name="activity_main_textview_订单汇总">order summary</string>
+    <string name="activity_main_button_提交订单">ORDER</string>
+    <string name="activity_main_button_邮件">email</string>
+    <string name="activity_main_java_不能点单超过100杯">抱歉，不能点单超过100杯。</string>
+    <string name="activity_main_java_请至少点1杯">请至少点1杯。</string>
+    <string name="activity_main_java_邮件地址">liujian180389@163.com</string>
+    <string name="activity_main_java_邮件主题">Just Java order for </string>
+    <string name="activity_main_java_create_order_summary">Name:%1$s
+\nAdd whipped cream? %2$s
+\nAdd chocolate? %3$s
+\nQuantity: %4$s
+\nTotal: %5$s
+\nThank you!</string>
 </resources>

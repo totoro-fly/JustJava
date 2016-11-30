@@ -1,6 +1,7 @@
 package com.totoro_fly.justjava;
 
 import android.content.Intent;
+import android.icu.text.NumberFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void incermentButton(View view) {
         if (quantity >= 100) {
-            Toast.makeText(this, "抱歉，不能点单超过100杯。", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.activity_main_java_不能点单超过100杯, Toast.LENGTH_SHORT).show();
             return;
         }
         quantity++;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void decermentButton(View view) {
         if (quantity <= 1) {
-            Toast.makeText(this, "请至少点1杯。", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.activity_main_java_请至少点1杯, Toast.LENGTH_SHORT).show();
             return;
         }
         quantity--;
@@ -88,26 +89,30 @@ public class MainActivity extends AppCompatActivity {
         dispalyMessage(priceMessage);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void emailClick(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_EMAIL,"liujian180389@163.com");
-        intent.putExtra(Intent.EXTRA_SUBJECT,"Just Java order for "+name);
-        intent.putExtra(Intent.EXTRA_TEXT,createOrderSummary());
-        if(intent.resolveActivity(getPackageManager())!=null)
-        startActivity(intent);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.activity_main_java_邮件地址)});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.activity_main_java_邮件主题) + name);
+        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary());
+        if (intent.resolveActivity(getPackageManager()) != null)
+            startActivity(intent);
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private String createOrderSummary() {
-        String priceMessage = "Name:" + getName();
-        priceMessage = priceMessage + "\nAdd whipped cream? " + hasWhippedCream();
-        priceMessage = priceMessage + "\nAdd chocolate? " + haschocolate();
-        priceMessage = priceMessage + "\nQuantity: " + quantity;
-        priceMessage = priceMessage + "\nTotal:$ " + calculatePrice();
-        priceMessage = priceMessage + "\nThank you!";
+        String priceMessage = getString(R.string.activity_main_java_create_order_summary, getName(), String.valueOf(hasWhippedCream()), String.valueOf(haschocolate()), String.valueOf(quantity), NumberFormat.getInstance().format(calculatePrice()));
+//        String priceMessage = "Name:" + getName();
+//        priceMessage = priceMessage + "\nAdd whipped cream? " + hasWhippedCream();
+//        priceMessage = priceMessage + "\nAdd chocolate? " + haschocolate();
+//        priceMessage = priceMessage + "\nQuantity: " + quantity;
+//        priceMessage = priceMessage + "\nTotal: " + NumberFormat.getCurrencyInstance().format(calculatePrice());
+//        priceMessage = priceMessage + "\nThank you!";
         return priceMessage;
     }
+
 
     private String getName() {
         return nameEditText.getText().toString();

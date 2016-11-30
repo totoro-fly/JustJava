@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="3"
-                android:hint="Please enter your name"
+                android:hint="@string/activity_main_hint_请输入姓名"
                 android:inputType="textCapWords"
                 android:selectAllOnFocus="true"
                 android:textSize="16sp"
@@ -41,39 +41,26 @@
                 android:layout_weight="1"
                 android:onClick="nameClick"
                 android:scaleY="0.8"
-                android:text="enter"
+                android:text="@string/activity_main_button_确认"
                 android:textAllCaps="true"
                 android:textSize="16sp"
                 />
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="toppings"
-            android:textAllCaps="true"
-            />
+            android:text="@string/activity_main_textview_配料"
+            style="@style/TextView"/>
         />
 
         <CheckBox
             android:id="@+id/whipped_cream_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="8dp"
-            android:text="Whipped cream"
-            android:textSize="16sp"
-            />
+            android:text="@string/activity_main_checkbox_生牛奶"
+            style="@style/CheckBox"/>
 
         <CheckBox
             android:id="@+id/chocolate_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="8dp"
-            android:text="Whipped cream"
-            android:textSize="16sp"
-            />
+            android:text="@string/activity_main_checkbox_巧克力"
+            style="@style/CheckBox"/>
 
 
         <TextView
@@ -81,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:paddingTop="16dp"
-            android:text="Quantity"
+            android:text="@string/activity_main_textview_数量"
             android:textAllCaps="true"/>
 
         <LinearLayout
@@ -91,68 +78,54 @@
 
             <Button
                 android:id="@+id/decrement_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:onClick="decermentButton"
                 android:text="-"
-                />
+                style="@style/Button.add"/>
 
             <TextView
                 android:id="@+id/quantity_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="0"
                 android:textSize="16sp"
-                />
+                style="@style/Button"/>
 
             <Button
+                style="@style/Button.add"
                 android:id="@+id/incerment_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
                 android:onClick="incermentButton"
                 android:text="+"
                 />
         </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingTop="16dp"
-            android:text="order summary"
-            android:textAllCaps="true"
-            />
+            android:text="@string/activity_main_textview_订单汇总"
+            style="@style/TextView"/>
 
 
         <TextView
             android:id="@+id/order_summary_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:paddingTop="16dp"
             android:text="￥0"
             android:textSize="16sp"
-            />
+            style="@style/Button"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:onClick="submitOrder"
-                android:text="ORDER"
-                />
+                android:text="@string/activity_main_button_提交订单"
+                style="@style/Button"/>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="16dp"
                 android:onClick="emailClick"
-                android:text="email"
-                />
+                android:text="@string/activity_main_button_邮件"
+                style="@style/Button"/>
         </RelativeLayout>
 
     </LinearLayout>
