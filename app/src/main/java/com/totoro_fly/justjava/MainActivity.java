@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String createOrderSummary() {
-        String priceMessage = getString(R.string.activity_main_java_create_order_summary, getName(), String.valueOf(hasWhippedCream()), String.valueOf(haschocolate()), String.valueOf(quantity), NumberFormat.getInstance().format(calculatePrice()));
+        String priceMessage = getString(R.string.activity_main_java_create_order_summary, getName(), String.valueOf(hasWhippedCream()), String.valueOf(haschocolate()), String.valueOf(quantity), NumberFormat.getCurrencyInstance().format(calculatePrice()));
 //        String priceMessage = "Name:" + getName();
 //        priceMessage = priceMessage + "\nAdd whipped cream? " + hasWhippedCream();
 //        priceMessage = priceMessage + "\nAdd chocolate? " + haschocolate();
